@@ -1,23 +1,24 @@
 package com.njxzc.springcloud;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+import javax.sql.DataSource;
 
 /**
  * projectName:  cloud2022_demo01
  * packageName: com.njxzc.springcloud
- * date: 2022-05-29 23:27
+ * date: 2022-06-04 22:03
  * copyright(c) 2020 南晓18卓工 邱依良
- *
  * @author 邱依良
  */
-@SpringBootApplication
-@MapperScan("com.njxzc.springcloud.dao")
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableEurekaClient
-public class PaymentMain {
+public class OrderMain80 {
     public static void main(String[] args) {
-        SpringApplication.run(PaymentMain.class, args);
+        SpringApplication.run(OrderMain80.class, args);
     }
 }
+
