@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * projectName:  cloud2022_demo01
  * packageName: com.njxzc.springcloud.controller
@@ -36,5 +38,20 @@ public class PaymentController {
         Payment payment = paymentService.getPaymentById(id);
         return payment != null?new CommonResult(200,"查询成功, serverPort = "+ serverPort,payment)
                 :new CommonResult(201,"查询结果为空",id);
+    }
+
+    @GetMapping("/payment/lb")
+    public String getPaymentLb(){
+        return serverPort;
+    }
+
+    @GetMapping("/payment/timeout")
+    public String getFeighTimeout(){
+        try{
+            TimeUnit.SECONDS.sleep(3);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 }

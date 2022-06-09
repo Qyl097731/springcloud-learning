@@ -10,6 +10,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * projectName:  cloud2022_demo01
@@ -52,5 +53,20 @@ public class PaymentController {
                              + serviceInstance.getHost() + "\t" + serviceInstance.getUri());
         });
         return discoveryClient;
+    }
+
+    @GetMapping("/payment/lb")
+    public String getPaymentLb(){
+        return serverPort;
+    }
+
+    @GetMapping("/payment/timeout")
+    public String getFeighTimeout(){
+        try{
+            TimeUnit.SECONDS.sleep(3);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 }
