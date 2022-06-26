@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * projectName:  cloud2022_demo01
- * packageName: com.njxzc.springcloud.controller
+ * packageName: com.njxzc.springcloud.com.njxzc.springcloud.controller
  * date: 2022-06-04 22:08
  * copyright(c) 2020 南晓18卓工 邱依良
  *

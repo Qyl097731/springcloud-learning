@@ -1,6 +1,7 @@
 package com.njxzc.springcloud.service;
 
 import com.njxzc.springcloud.entities.CommonResult;
+import com.njxzc.springcloud.service.impl.PaymentFallbackService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author 邱依良
  */
 @Component
-@FeignClient(value = "CLOUD-PAYMENT-SERVICE")
-public interface PaymentFeignService {
-    @GetMapping(value = "/payment/getPayment/{id}")
-    CommonResult getPayment(@PathVariable("id") Long id);
+@FeignClient(value = "CLOUD-PAYMENT-HYSTRIX-SERVICE",fallback = PaymentFallbackService.class)
+public interface PaymentFeignHystrixService {
+    @GetMapping("/payment/hystrix/ok/{id}")
+    String paymentInfo_OK(@PathVariable("id")Integer id);
 
-    @GetMapping("/payment/timeout")
-    public String getFeighTimeout();
+    @GetMapping("/payment/hystrix/timeout/{id}")
+    String paymentInfo_Timeout(@PathVariable("id")Integer id);
 }

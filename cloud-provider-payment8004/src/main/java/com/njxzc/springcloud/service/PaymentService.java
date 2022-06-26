@@ -4,7 +4,7 @@ import com.njxzc.springcloud.entities.Payment;
 
 /**
  * projectName:  cloud2022_demo01
- * packageName: com.njxzc.springcloud.service
+ * packageName: com.njxzc.springcloud.com.njxzc.springcloud.service
  * date: 2022-06-02 01:49
  * copyright(c) 2020 南晓18卓工 邱依良
  *

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * projectName:  cloud2022_demo01
- * packageName: com.njxzc.springcloud.controller
+ * packageName: com.njxzc.springcloud.com.njxzc.springcloud.controller
  * date: 2022-06-02 01:52
  * copyright(c) 2020 南晓18卓工 邱依良
  * @author 邱依良

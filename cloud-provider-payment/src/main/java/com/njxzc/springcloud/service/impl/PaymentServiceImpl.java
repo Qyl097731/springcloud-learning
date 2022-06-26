@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * projectName:  cloud2022_demo01
- * packageName: com.njxzc.springcloud.service.impl
+ * packageName: com.njxzc.springcloud.com.njxzc.springcloud.service.impl
  * date: 2022-06-02 01:50
  * copyright(c) 2020 南晓18卓工 邱依良
  *
