@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloud-payment-com.njxzc.springcloud.service
+    name: cloud-payment-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -27,7 +27,8 @@ eureka:
     fetch-registry: true
     service-url:
       #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/
+#      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
 
 
 mybatis:
