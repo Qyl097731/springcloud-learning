@@ -1,4 +1,4 @@
-package com.njxzc.filter;
+package com.njxzc.springcloud.filter;
 
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * projectName:  cloud2022_demo01
- * packageName: com.njxzc.filter
+ * packageName: com.njxzc.springcloud.filter
  * date: 2022-06-28 21:19
  * copyright(c) 2020 南晓18卓工 邱依良
  *

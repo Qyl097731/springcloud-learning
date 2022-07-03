@@ -22,8 +22,7 @@ spring:
           uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/lb
-            - Cookie=username,qyl
-            - Header-X-Request-Id,\d+
+#            - Cookie=username,qyl
 
 eureka:
   client:
