@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: cloud-consumer-order80
+  zipkin:
+    base-url: http://8.130.48.219:9411/zipkin/
+  sleuth:
+    samoler:
+      #采样率介于0-1之间,1表示全部采集
+      probability: 1
 
 eureka:
   instance:

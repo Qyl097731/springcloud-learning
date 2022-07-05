@@ -42,37 +42,42 @@ public class OrderController {
 
 
     @GetMapping("/consumer/payment/create")
-    public CommonResult<Payment> create(Payment payment){
-        return restTemplate.postForObject(PAYMENT_URL+"/payment/create",payment,CommonResult.class);
+    public CommonResult<Payment> create(Payment payment) {
+        return restTemplate.postForObject(PAYMENT_URL + "/payment/create", payment, CommonResult.class);
     }
 
     @GetMapping("/consumer/payment/getPayment/{id}")
-    public CommonResult<Payment> getPayment(@PathVariable("id")Long id){
-        return restTemplate.getForObject(PAYMENT_URL+"/payment/getPayment/"+id,CommonResult.class);
+    public CommonResult<Payment> getPayment(@PathVariable("id") Long id) {
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/getPayment/" + id, CommonResult.class);
     }
 
     @GetMapping("/consumer/payment/getForEntity/{id}")
-    public CommonResult<Payment> getForEntity(@PathVariable("id")Long id){
+    public CommonResult<Payment> getForEntity(@PathVariable("id") Long id) {
         ResponseEntity<CommonResult> entity = restTemplate.getForEntity(PAYMENT_URL + "/payment/getPayment/" + id, CommonResult.class);
-        if(entity.getStatusCode().is2xxSuccessful()){
+        if (entity.getStatusCode().is2xxSuccessful()) {
             return entity.getBody();
-        }else {
+        } else {
             return new CommonResult<>(entity.getStatusCodeValue(), "操作失败");
         }
     }
 
     @GetMapping("/consumer/payment/lb")
-    public String getPaymentLb(){
+    public String getPaymentLb() {
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
 
-        if (instances == null || instances.isEmpty()){
+        if (instances == null || instances.isEmpty()) {
             return null;
         }
 
         ServiceInstance serviceInstance = loadBalancer.instances(instances);
         URI uri = serviceInstance.getUri();
 
-        return restTemplate.getForObject(uri + "/payment/lb",String.class);
+        return restTemplate.getForObject(uri + "/payment/lb", String.class);
+    }
+
+    @GetMapping("/consumer/payment/zipkin")
+    public String paymentZipkin() {
+        return restTemplate.getForObject("http://localhost:8001" + "/payment/zipkin/", String.class);
     }
 
 }

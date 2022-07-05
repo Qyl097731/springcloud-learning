@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * packageName: com.njxzc.springcloud.com.njxzc.springcloud.controller
  * date: 2022-06-02 01:52
  * copyright(c) 2020 南晓18卓工 邱依良
+ *
  * @author 邱依良
  */
 @RestController
@@ -27,31 +28,36 @@ public class PaymentController {
     private String serverPort;
 
     @PostMapping(value = "/payment/create")
-    public CommonResult create(@RequestBody Payment payment){
+    public CommonResult create(@RequestBody Payment payment) {
         int result = paymentService.create(payment);
-        return result>0?new CommonResult(200,"插入成功 , serverPort = "+ serverPort,result)
-                :new CommonResult(201,"插入失败",result);
+        return result > 0 ? new CommonResult(200, "插入成功 , serverPort = " + serverPort, result)
+                : new CommonResult(201, "插入失败", result);
     }
 
     @GetMapping(value = "/payment/getPayment/{id}")
-    public CommonResult getPayment(@PathVariable("id") Long id){
+    public CommonResult getPayment(@PathVariable("id") Long id) {
         Payment payment = paymentService.getPaymentById(id);
-        return payment != null?new CommonResult(200,"查询成功, serverPort = "+ serverPort,payment)
-                :new CommonResult(201,"查询结果为空",id);
+        return payment != null ? new CommonResult(200, "查询成功, serverPort = " + serverPort, payment)
+                : new CommonResult(201, "查询结果为空", id);
     }
 
     @GetMapping("/payment/lb")
-    public String getPaymentLb(){
+    public String getPaymentLb() {
         return serverPort;
     }
 
     @GetMapping("/payment/timeout")
-    public String getFeighTimeout(){
-        try{
+    public String getFeighTimeout() {
+        try {
             TimeUnit.SECONDS.sleep(3);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return serverPort;
+    }
+
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin() {
+        return "hi ,i'am paymentzipkin server fall back，welcome to njxzc，O(∩_∩)O哈哈~";
     }
 }

@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: cloud-payment-service
+    # 配置 zipkin 和 sleuth 相关的配置
+  zipkin:
+    base-url: http://8.130.48.219:9411/zipkin/
+  sleuth:
+    samoler:
+      #采样率介于0-1之间,1表示全部采集
+      probability: 1
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
