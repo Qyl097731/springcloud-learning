@@ -1,0 +1,38 @@
+server:
+  port: 3344
+  #应用名称
+spring:
+  application:
+    name: cloud-config-center
+
+  # 配置git仓库地址(以下示例是开放的)-(最后不需带/,否则会出现告警：No custom http config found for URL)
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Qyl097731/springcloud-config.git
+            # 配置仓库路径(仓库下文件目录）
+          searchPaths: springcloud-config
+  # 配置仓库的分支
+      label: master
+  # rq配置 5672客户端 15672网页服务
+  rabbitmq:
+    host: 8.130.48.219
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+      #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址
+      defaultZone: http://eureka7001.com:7001/eureka/
+
+## 配置 rq bus刷新配置
+## 配置变更之后 curl -X POST "http://localhost:3344/actuator/bus-refresh/{dest}" 实现所有{dest}订阅者的更新
+## 如 curl -X POST "http://localhost:3344/actuator/bus-refresh/config-client:3355"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
