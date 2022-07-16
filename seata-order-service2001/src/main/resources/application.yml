@@ -1,0 +1,38 @@
+server:
+  port: 2001
+
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    alibaba:
+      seata:
+        #自定义事务组名称需要与seata-server中的对应
+        tx-service-group: my_test_tx_group
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_order
+    username: root
+    password: '097731'
+
+feign:
+  hystrix:
+    enabled: false
+  #连接远程数据库有一点的延迟，需要设置超时时间
+  #否则会因为连接超时报错
+  httpclient:
+    connection-timeout: 60000
+
+
+
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
